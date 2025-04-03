@@ -1,0 +1,23 @@
+Make a transaction file (data could be anything of your choice):
+echo "Sensitive blockchain transaction_data" > transaction.txt
+
+
+If you have OpenSSL 3.0 or above: 
+
+Encryption:
+    openssl enc -aes-256-cbc -salt -pkbdf2 -in transaction.txt -out transaction.bin -pass pass:mysecretpassword
+Decryption:
+    openssl end -aes-256-cbc -d -in transaction.bin -out decrypted.txt -pass pass:mysecretpassword
+Verify:
+    cat decrypted.txt
+
+
+If your OpenSSL verison is below 3.0:
+
+
+Encryption:
+    openssl enc -aes-256-cbc -salt -in transaction.txt -out transaction.bin -pass pass:mysecretpassword
+Decryption:
+    openssl enc -aes-256-cbc -d -in transaction.bin -out decrypted.txt -pass pass:mysecretpassword
+Verify:
+    cat decrypted.txt
